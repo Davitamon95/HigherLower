@@ -19,7 +19,9 @@ class HigherLowerActivity : AppCompatActivity() {
     }
 
     /**
-     * Set the initial (UI) state of the game.
+     *  methode voor initialiseren van de start-layout
+     *
+     *  definiert de methodes voor setOnClickListener bij de 3 buttons
      */
     private fun initViews() {
         binding.btnHigher.setOnClickListener { onHigherClick() }
@@ -28,7 +30,7 @@ class HigherLowerActivity : AppCompatActivity() {
         updateUI()
     }
     /**
-     * Update the last throw text and the dice image resource drawable with the current throw.
+     * Update methode om de dobbelsteen bij elke worp mee te updaten
      */
     private fun updateUI() {
         binding.tvLastThrow.text = getString(R.string.last_throw, lastThrow)
@@ -45,8 +47,7 @@ class HigherLowerActivity : AppCompatActivity() {
 
 
     /**
-     * Replaces the previous dice value with the current one and replaces the current dice with a new dice
-     * with a random number between 1 and 6 (inclusive).
+     * methode om de dobbelsteen elke worp te laten veranderen en om de oude worp waarde te vernieuwen
      */
     private fun rollDice() {
         lastThrow = currentThrow
@@ -54,6 +55,10 @@ class HigherLowerActivity : AppCompatActivity() {
         updateUI()
     }
 
+    /**
+     * 3 methodes om bij een higher, lower en equal buttonclick de rollDice methode uit te voeren
+     * en daarvan te bepalen of de gebruiker op de juiste heeft geklikt
+     */
     private fun onHigherClick() {
         rollDice()
 
@@ -61,9 +66,6 @@ class HigherLowerActivity : AppCompatActivity() {
         else onAnswerIncorrect()
     }
 
-    /**
-     * Calls [rollDice] and checks if the answer is correct.
-     */
     private fun onLowerClick() {
         rollDice()
 
@@ -71,9 +73,6 @@ class HigherLowerActivity : AppCompatActivity() {
         else onAnswerIncorrect()
     }
 
-    /**
-     * Calls [rollDice] and checks if the answer is correct.
-     */
     private fun onEqualClick() {
         rollDice()
 
@@ -82,15 +81,12 @@ class HigherLowerActivity : AppCompatActivity() {
     }
 
     /**
-     * Displays a successful Toast message.
+     * Methodes om bij een goed of fout antwoord de juiste toastmessage te laten zien
      */
     private fun onAnswerCorrect() {
         Toast.makeText(this, getString(R.string.correct), Toast.LENGTH_SHORT).show()
     }
 
-    /**
-     * Displays a incorrect Toast message.
-     */
     private fun onAnswerIncorrect() {
         Toast.makeText(this, getString(R.string.incorrect), Toast.LENGTH_SHORT).show()
     }
